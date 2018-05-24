@@ -57,7 +57,7 @@ export class View {
   removeResizeListener(handler: ResizeHandler): View;
   tooltip(handler: TooltipHandler): View;
 
-  getState(options?: any): any;
+  getState(options?: {signal?: (name?: string, operator?: any) => boolean, data?: (name?: string, object?: any) => boolean, recurse?: boolean}): any;
   setState(state: any): View;
 }
 
