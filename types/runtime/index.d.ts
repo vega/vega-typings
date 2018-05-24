@@ -57,8 +57,12 @@ export class View {
   removeResizeListener(handler: ResizeHandler): View;
   tooltip(handler: TooltipHandler): View;
 
-  getState(options?: {signal?: (name?: string, operator?: any) => boolean, data?: (name?: string, object?: any) => boolean, recurse?: boolean}): any;
-  setState(state: any): View;
+  getState(options?: {
+    signal?: (name?: string, operator?: any) => boolean;
+    data?: (name?: string, object?: any) => boolean;
+    recurse?: boolean;
+  }): { signal: any; data: any };
+  setState(state: { signal?: any; data?: any }): View;
 }
 
 export type ScenegraphEvent = MouseEvent | TouchEvent | KeyboardEvent;
