@@ -14,6 +14,6 @@ export interface RenderModule {
     handler: Handler;
 }
 
-export class Handler { }
+export declare class Handler { }
 
-export class CanvasHandler extends Handler { }
+export declare class CanvasHandler extends Handler { }
