@@ -1,7 +1,7 @@
 import { Scene, SceneItem } from './scene';
 import { Loader } from '.';
 
-export declare class Renderer {
+export class Renderer {
     constructor(loader: Loader)
     initialize(el: HTMLElement, width: number, height: number, origin: number[]): this
     _render(scene: Scene, items: SceneItem[]): this;
@@ -14,6 +14,6 @@ export interface RenderModule {
     handler: Handler;
 }
 
-export declare class Handler { }
+export class Handler { }
 
-export declare class CanvasHandler extends Handler { }
+export class CanvasHandler extends Handler { }

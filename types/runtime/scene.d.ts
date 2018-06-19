@@ -2,7 +2,7 @@ export interface Scene {
     marktype: string;
 }
 
-export declare class Bounds {
+export class Bounds {
     x1: number;
     y1: number;
     x2: number;
