@@ -114,3 +114,5 @@ export interface DefineMark<T extends string, I = {}, R extends string = never> 
 export function projection(type: string, projection: any): View;
 
 export * from 'vega-util';
+export * from './renderer';
+export * from './scene';
