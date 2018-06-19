@@ -1,3 +1,4 @@
+import { Renderer } from './renderer';
 import { Spec } from '..';
 
 // TODO
@@ -24,6 +25,7 @@ export class View {
   finalize(): void;
   logLevel(level: number): View;
   renderer(renderer: 'canvas' | 'svg' | 'none'): View;
+  _renderer: Renderer;
   loader(loader: Loader): View;
 
   hover(): View;
