@@ -24,6 +24,7 @@ export class View {
   initialize(dom?: Element | string): View;
   finalize(): void;
   logLevel(level: number): View;
+  _redraw: boolean;
   renderer(renderer: 'canvas' | 'svg' | 'none'): View;
   _renderer: Renderer;
   loader(loader: Loader): View;
