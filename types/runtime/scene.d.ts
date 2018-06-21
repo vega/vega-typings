@@ -52,3 +52,5 @@ export interface SceneLegendItem {
         index: number;
     }
 }
+
+export function sceneVisit(scene: Scene | SceneGroup, itemCallback: (item: Scene | SceneItem) => void): void;
