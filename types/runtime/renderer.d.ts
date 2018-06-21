@@ -1,6 +1,8 @@
 import { Scene, SceneItem } from './scene';
 import { Loader } from '.';
 
+export type Renderers = 'canvas' | 'svg' | 'none';
+
 export class Renderer {
   constructor(loader: Loader);
   initialize(el: HTMLElement, width: number, height: number, origin: number[]): this;
