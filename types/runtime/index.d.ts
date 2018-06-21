@@ -24,9 +24,7 @@ export class View {
   initialize(dom?: Element | string): this;
   finalize(): void;
   logLevel(level: number): this;
-  _redraw: boolean;
   renderer(renderer: Renderers): this;
-  _renderer: Renderer;
   loader(loader: Loader): this;
 
   hover(): this;
