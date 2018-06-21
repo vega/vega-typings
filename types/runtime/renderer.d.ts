@@ -14,6 +14,8 @@ export interface RenderModule {
     handler: Handler;
 }
 
+export function renderModule(moduleName: string, renderModule: RenderModule): RenderModule;
+
 export class Handler { }
 
 export class CanvasHandler extends Handler { }
