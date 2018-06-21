@@ -6,7 +6,6 @@ export type Renderers = 'canvas' | 'svg' | 'none';
 export class Renderer {
   constructor(loader: Loader);
   initialize(el: HTMLElement, width: number, height: number, origin: number[]): this;
-  _render(scene: Scene, items: SceneItem[]): this;
   resize(width: number, height: number, origin: number[]): this;
 }
 
