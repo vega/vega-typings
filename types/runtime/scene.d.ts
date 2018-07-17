@@ -12,6 +12,7 @@ export class Bounds {
 export interface SceneItem {
   bounds: Bounds;
   mark: { role: string };
+  opacity: number;
   x: number;
   y: number;
 }
@@ -42,7 +43,15 @@ export type SceneSymbol = SceneItem & {
   strokeWidth: number;
 };
 
+export type SceneTextBaseline = 'top' | 'middle' | 'bottom';
+export type SceneTextAlign = 'left' | 'center' | 'right';
+
 export type SceneText = SceneItem & {
+  align: SceneTextAlign;
+  angle: number;
+  baseline: SceneTextBaseline;
+  fill: string;
+  font: string;
   fontSize: number;
   text: string;
 };
