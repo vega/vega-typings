@@ -1,8 +1,5 @@
-import { OnTrigger, Transform } from '.';
+import { OnTrigger, Transform, SignalRef } from '.';
 
-export interface FieldParam {
-  field: string;
-}
 export type DataType = 'boolean' | 'number' | 'date' | 'string';
 export type Parse =
   | 'auto'
@@ -41,12 +38,12 @@ export type Data = (
       values: Datum[];
     }
   | {
-      url: string;
+      url: string | SignalRef;
     }
   | {}) & {
   name: string;
   on?: OnTrigger[];
-  format?: Format;
+  format?: Format | SignalRef;
   transform?: Transform[];
 };
 export type Datum = any;

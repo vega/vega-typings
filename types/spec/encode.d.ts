@@ -1,16 +1,18 @@
 import { SignalRef } from '.';
+import { AnchorValue } from './values';
+import { TitleAnchor } from './title';
 
-export type FieldValue = string | SignalRef | DatumFieldRef | GroupFieldRef | ParentFieldRef;
+export type Field = string | SignalRef | DatumFieldRef | GroupFieldRef | ParentFieldRef;
 
 export interface DatumFieldRef {
-  datum: FieldValue;
+  datum: Field;
 }
 export interface GroupFieldRef {
-  group: FieldValue;
+  group: Field;
   level?: number;
 }
 export interface ParentFieldRef {
-  parent: FieldValue;
+  parent: Field;
   level?: number;
 }
 export type BaseValueRef<T> =
@@ -19,7 +21,7 @@ export type BaseValueRef<T> =
       value: T | null;
     }
   | {
-      field: FieldValue;
+      field: Field;
     }
   | {
       range: number | boolean;
@@ -27,10 +29,10 @@ export type BaseValueRef<T> =
 export type ScaledValueRef<T> =
   | BaseValueRef<T>
   | (BaseValueRef<T> & {
-      scale: FieldValue;
+      scale: Field;
     })
   | {
-      scale: FieldValue;
+      scale: Field;
       band: boolean | number;
     };
 export type NumericValueRef = (ScaledValueRef<number> | {}) & {
@@ -41,7 +43,13 @@ export type NumericValueRef = (ScaledValueRef<number> | {}) & {
   extra?: boolean;
 };
 export type StringValueRef = ScaledValueRef<string>;
+export type SymbolShapeValueRef = ScaledValueRef<SymbolShape>;
+export type FontWeightValueRef = ScaledValueRef<FontWeight>;
+export type AlignValueRef = ScaledValueRef<Align>;
+export type AnchorValueRef = ScaledValueRef<TitleAnchor>;
+export type TextBaselineValueRef = ScaledValueRef<TextBaseline>;
 export type BooleanValueRef = ScaledValueRef<boolean>;
+export type ArrayValueRef = ScaledValueRef<any[]>;
 export type ArbitraryValueRef = NumericValueRef | ColorValueRef | ScaledValueRef<any>;
 export interface ColorRGB {
   r: NumericValueRef;
@@ -66,7 +74,7 @@ export interface ColorHCL {
 export type ColorValueRef =
   | ScaledValueRef<string>
   | {
-      gradient: FieldValue;
+      gradient: Field;
     }
   | {
       color: ColorRGB | ColorHSL | ColorLAB | ColorHCL;
@@ -96,7 +104,6 @@ export interface EncodeEntry {
   strokeCap?: ProductionRule<StringValueRef>;
   strokeJoin?: ProductionRule<StringValueRef>;
   strokeMiterLimit?: ProductionRule<NumericValueRef>;
-  zindex?: ProductionRule<NumericValueRef>;
   cursor?: ProductionRule<StringValueRef>;
   tooltip?: ProductionRule<StringValueRef>;
   [k: string]: ProductionRule<ArbitraryValueRef> | undefined;
@@ -188,15 +195,8 @@ export type TextDirection = 'ltr' | 'rtl';
 export type FontWeight =
   | 'normal'
   | 'bold'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
+  | 'lighter'
+  | 'bolder'
   | 100
   | 200
   | 300

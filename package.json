@@ -1,6 +1,6 @@
 {
   "name": "vega-typings",
-  "version": "0.3.16",
+  "version": "0.3.32",
   "description": "Typings for Vega",
   "types": "types",
   "repository": "git@github.com:vega/vega-typings.git",
@@ -8,8 +8,8 @@
   "license": "BSD-3",
   "devDependencies": {
     "dtslint": "^0.3.0",
-    "prettier": "^1.13.5",
-    "typescript": "^2.9.1"
+    "prettier": "^1.13.7",
+    "typescript": "^2.9.2"
   },
   "scripts": {
     "format": "prettier $([ \"$CI\" = true ] && echo --list-different || echo --write) './**/*.{ts,tsx,js,json,css}'",
