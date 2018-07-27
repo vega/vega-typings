@@ -195,7 +195,7 @@ export interface FormulaTransform {
 
 export interface GeoJSONTransform {
   type: 'geojson';
-  fields?: string[];
+  fields?: string[] | TransformField[] | SignalRef;
   geojson?: string | TransformField;
   signal: string;
 }
