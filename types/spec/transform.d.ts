@@ -79,7 +79,7 @@ export type AggregateOp =
 
 export interface BinTransform extends BaseBin {
   type: 'bin';
-  extent: number[] | SignalRef[] | SignalRef;
+  extent: (number | SignalRef)[] | SignalRef;
   field: string | TransformField;
   as?: Vector2<string | SignalRef> | SignalRef;
   signal?: string;
@@ -195,7 +195,7 @@ export interface FormulaTransform {
 
 export interface GeoJSONTransform {
   type: 'geojson';
-  fields?: string[] | TransformField[] | SignalRef;
+  fields?: (string | TransformField)[] | SignalRef;
   geojson?: string | TransformField;
   signal: string;
 }
@@ -203,7 +203,7 @@ export interface GeoJSONTransform {
 export interface GeoPointTransform {
   type: 'geopoint';
   projection: string; // projection name
-  fields: string[] | TransformField[] | SignalRef;
+  fields: (string | TransformField)[] | SignalRef;
   as?: string[];
 }
 
@@ -265,7 +265,7 @@ export interface StackTransform {
   groupby?: (string | TransformField)[];
   sort?: Compare;
   offset?: StackOffset;
-  as?: string[] | SignalRef[] | SignalRef;
+  as?: (string | SignalRef)[] | SignalRef;
 }
 export type StackOffset = 'zero' | 'center' | 'normalize';
 
@@ -276,7 +276,7 @@ export interface WindowTransform {
   ops?: (string | SignalRef)[];
   fields?: (string | TransformField | null)[] | SignalRef;
   as?: (string | SignalRef | null)[] | SignalRef;
-  frame?: null[] | number[] | SignalRef[] | SignalRef;
+  frame?: (null | number | SignalRef)[] | SignalRef;
   ignorePeers?: boolean;
   params?: number[];
 }
