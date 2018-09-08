@@ -15,9 +15,7 @@ import {
     View
 } from 'vega';
 
-interface SceneRenderer {
-    (scene: Scene): void;
-}
+type SceneRenderer = (scene: Scene) => void;
 
 const group: SceneRenderer = (outerScene: Scene) => {
     sceneVisit(outerScene, sceneGroupOrItem => {
@@ -39,7 +37,6 @@ const rect: SceneRenderer = (scene: Scene) => {
         rect.y;
     });
 };
-
 
 const legend: SceneRenderer = (scene: Scene) => {
     const legendMap: { [role: string]: (item: SceneItem) => void } = {
