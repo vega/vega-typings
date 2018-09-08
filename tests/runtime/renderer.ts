@@ -59,6 +59,9 @@ const legend: SceneRenderer = (scene: Scene) => {
 const rule: SceneRenderer = (scene: Scene) => {
     vega.sceneVisit(scene, sceneGroupOrItem => {
         const line = sceneGroupOrItem as SceneLine;
+        line.opacity;
+        line.stroke;
+        line.strokeWidth;
         line.x;
         line.y;
         line.x2;
