@@ -101,7 +101,6 @@ const rootRenderer: SceneRenderer = (scene: Scene) => {
 class TestRenderer extends Renderer {
     _render(scene: Scene, items: SceneItem[]) {
         rootRenderer(scene);
-        //return this for vega
         return this;
     }
 }
