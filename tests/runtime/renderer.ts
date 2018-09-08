@@ -1,6 +1,8 @@
-import * as vega from 'vega';
 import {
+    CanvasHandler,
+    Renderer,
     Renderers,
+    renderModule,
     Scene,
     SceneGroup,
     SceneItem,
@@ -8,7 +10,9 @@ import {
     SceneLine,
     SceneRect,
     SceneSymbol,
-    SceneText
+    SceneText,
+    sceneVisit,
+    View
 } from 'vega';
 
 interface SceneRenderer {
@@ -16,9 +20,9 @@ interface SceneRenderer {
 }
 
 const group: SceneRenderer = (outerScene: Scene) => {
-    vega.sceneVisit(outerScene, sceneGroupOrItem => {
+    sceneVisit(outerScene, sceneGroupOrItem => {
         const group = sceneGroupOrItem as SceneGroup;
-        vega.sceneVisit(group, item => {
+        sceneVisit(group, item => {
             const innerScene = item as Scene;
             rootRenderer(innerScene);
         });
@@ -26,7 +30,7 @@ const group: SceneRenderer = (outerScene: Scene) => {
 };
 
 const rect: SceneRenderer = (scene: Scene) => {
-    vega.sceneVisit(scene, sceneGroupOrItem => {
+    sceneVisit(scene, sceneGroupOrItem => {
         const rect = sceneGroupOrItem as SceneRect;
         rect.fill;
         rect.height;
@@ -50,14 +54,14 @@ const legend: SceneRenderer = (scene: Scene) => {
             symbol.size;
         }
     };
-    vega.sceneVisit(scene, sceneGroupOrItem => {
+    sceneVisit(scene, sceneGroupOrItem => {
         const sceneItem = sceneGroupOrItem as SceneItem;
         legendMap[sceneItem.mark.role](sceneItem);
     });
 };
 
 const rule: SceneRenderer = (scene: Scene) => {
-    vega.sceneVisit(scene, sceneGroupOrItem => {
+    sceneVisit(scene, sceneGroupOrItem => {
         const line = sceneGroupOrItem as SceneLine;
         line.opacity;
         line.stroke;
@@ -70,7 +74,7 @@ const rule: SceneRenderer = (scene: Scene) => {
 };
 
 const text: SceneRenderer = (scene: Scene) => {
-    vega.sceneVisit(scene, sceneGroupOrItem => {
+    sceneVisit(scene, sceneGroupOrItem => {
         const text = sceneGroupOrItem as SceneText;
         text.align;
         text.angle;
@@ -97,7 +101,7 @@ const rootRenderer: SceneRenderer = (scene: Scene) => {
     renderer(scene);
 }
 
-class TestRenderer extends vega.Renderer {
+class TestRenderer extends Renderer {
     _render(scene: Scene, items: SceneItem[]) {
         rootRenderer(scene);
         //return this for vega
@@ -105,10 +109,10 @@ class TestRenderer extends vega.Renderer {
     }
 }
 
-class TestView extends vega.View {
+class TestView extends View {
     renderer(renderer: Renderers | 'test') {
         return super.renderer(renderer as Renderers);
     }
 }
 
-vega.renderModule('test', { handler: vega.CanvasHandler, renderer: TestRenderer });
+renderModule('test', { handler: CanvasHandler, renderer: TestRenderer });
