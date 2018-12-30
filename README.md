@@ -1,3 +1,5 @@
+NOTE: This package has been consolidated into the vega/vega repository, where future development and issues will be handled. This repository has been archived and is now read-only.
+
 # Vega-Typings
 
 [![npm version](https://img.shields.io/npm/v/vega-typings.svg)](https://www.npmjs.com/package/vega-typings)
